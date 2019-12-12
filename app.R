@@ -48,22 +48,21 @@ data3 <- read.csv('data/top_10_male_jobs.csv')
 f3_1 <- ggplot(data3, aes(year, female_prop, color = job)) + 
     geom_line() +
     scale_y_continuous(labels=scales::percent) +
-    labs(title = 'Percentage of Women by Year', x = 'Year', y = 'Percentage of Women', color = 'Job') +
+    labs(title = 'Percentage of Women by Year', x = 'Year', y = 'Percentage of Women', color = '') +
     theme_bw()
 f3_2 <- ggplot(data3, aes(reorder(job, sort(total_prop_female)), total_prop_female, fill = job)) + 
     geom_col(position = 'dodge') +
     scale_y_continuous(labels=scales::percent) +
     coord_flip() +
-    labs(title = 'Jobs by Percentage of Women(10 Most Male Dominant)', x = 'Job', y = "Percentage of Women", fill = 'Job')+
+    labs(title = 'Top 10 Male Dominated Jobs by Percentage of Women (Annual and Total)', x = 'Job', y = "Percentage of Women", fill = 'Job')+
     theme_bw()
 plots <- list(ggplotly(f3_1),ggplotly(f3_2))
-subplot(plots)
+subplot(plots, margin = 0.1)
 }
 graph3 <- dccGraph(
   id = 'top-10',
   figure = make_figure3()
 )
-
 
 
 app$layout(
