@@ -34,15 +34,6 @@ third_graph <- dccGraph(
 )
 
 divider <- htmlDiv(className='border-bottom mb-5 mt-5')
-jobsDropdown <- dccDropdown(
-  id = "job",
-  options = lapply( # a shortcut for defining your options
-    levels(data$job), function(x){
-      list(label=x, value=x)
-    }),
-  value = levels(data$job) # default value
-)
-
 
 app$layout(
   htmlDiv(
@@ -83,17 +74,12 @@ app$layout(
   )
 )
 
-# Adding callbacks for interactivity --------------------------------------
-
 app$callback(
-  #update figure of employee-counts
   output=list(id = 'employee-counts', property='figure'),
-  #based on values of jobs
-  params=list(input(id = "job", property='value')),
-  #this translates your list of params into function arguments
-  function(job_value) {
-    make_job_gender_employment_fig(job_value)
-  })
-
+  params=list(input(id = jobsDropdownId, property='value')),
+  function(selected_job) {
+    make_job_gender_employment_fig(selected_job)
+  }
+)
 
 app$run_server()
