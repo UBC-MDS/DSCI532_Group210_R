@@ -10,7 +10,6 @@ source('src/top_10_job_fig.R')
 source('src/header.R')
 source('src/footer.R')
 
-data <- read_csv('data/jobs_original.csv')
 app <- Dash$new(
   external_stylesheets = c(
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
