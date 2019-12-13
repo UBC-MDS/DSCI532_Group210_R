@@ -8,9 +8,13 @@ library(gapminder)
 source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
 source('src/top_10_job_fig.R')
+source('src/header.R')
 
 app <- Dash$new(
-  external_stylesheets = "https://codepen.io/chriddyp/pen/bWLwgP.css"
+  external_stylesheets = c(
+    'https://codepen.io/chriddyp/pen/bWLwgP.css',
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'
+  )
 )
 
 first_graph <- dccGraph(
@@ -28,17 +32,33 @@ third_graph <- dccGraph(
   figure = make_top_10_job_fig()
 )
 
+divider <- htmlDiv(className='border-bottom mb-5 mt-5')
+
 app$layout(
   htmlDiv(
     list(
-      htmlH1('First attempt'),
-      htmlH2('Stuff'),
+      header,
+      htmlP("
+          Let's first look at the male and female employment trends of
+          individual jobs!
+      ", className='lead mb-4 font-weight-bold'),
       first_graph,
-      htmlDiv(),
+      divider,
+      htmlP("
+          Here, we will categorize the jobs into different gender dominant
+          groups, based on their male-to-female ratios, and look at their trends
+          over the decades.
+      ", className='lead mb-4 font-weight-bold'),
       second_graph,
-      htmlDiv(),
+      divider,
+      htmlP("
+          For the final graph, we will look at different top 10 jobs in terms of
+          their historical female employment proportion and investigate how their
+          gender balance has changed over time.
+      ", className='lead mb-4 font-weight-bold'),
       third_graph
-    )
+    ),
+    className = 'container main'
   )
 )
 
