@@ -54,7 +54,11 @@ make_top_10_job_fig <- function (data_key = 'top_10_female') {
 
   top_10_job_fig <- ggplot(
     data_map[[data_key]],
-    aes(reorder(job, sort(total_prop_female)), total_prop_female, fill = job)
+    aes(
+      reorder(job, total_prop_female),
+      total_prop_female,
+      fill = job
+    )
   ) +
     geom_col(position = 'dodge') +
     scale_y_continuous(labels=scales::percent) +
@@ -71,7 +75,10 @@ make_top_10_job_fig <- function (data_key = 'top_10_female') {
     )+
     theme_bw()
 
-  plots <- list(ggplotly(jobs_woman_trend_fig), ggplotly(top_10_job_fig))
+  plots <- list(
+    ggplotly(jobs_woman_trend_fig),
+    ggplotly(top_10_job_fig, tooltip=c("job", "total_prop_female"))
+  )
 
   subplot(plots, margin = 0.1)
 }
