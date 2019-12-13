@@ -3,7 +3,6 @@ library(dashCoreComponents)
 library(dashHtmlComponents)
 library(tidyverse)
 library(plotly)
-library(gapminder)
 
 source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
@@ -43,7 +42,17 @@ app$layout(
           Let's first look at the male and female employment trends of
           individual jobs!
       ", className='lead mb-4 font-weight-bold'),
-      first_graph,
+      htmlDiv(list(
+        htmlDiv(list(
+          htmlLabel('Select a job'),
+          jobsDropdown
+        ), className='column side', style=list(width = '15%')),
+        htmlDiv(
+          list(first_graph),
+          className='column middle',
+          style=list(marginLeft = 0)
+        )
+      ), className='row'),
       divider,
       htmlP("
           Here, we will categorize the jobs into different gender dominant
@@ -72,6 +81,14 @@ app$layout(
     ),
     className = 'container main'
   )
+)
+
+app$callback(
+  output=list(id = 'employee-counts', property='figure'),
+  params=list(input(id = jobsDropdownId, property='value')),
+  function(selected_job) {
+    make_job_gender_employment_fig(selected_job)
+  }
 )
 
 app$callback(
