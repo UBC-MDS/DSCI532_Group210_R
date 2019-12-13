@@ -29,7 +29,7 @@ make_job_gender_employment_fig <- function (
       labels=c("0K", "20K", "40K", "60K", "80K", "100K", "120K", "140K")
     ) +
     labs(
-      title = "Number of Employees by Year",
+      title = paste("Number of Employees by Year for", selected_job),
       x= "Year",
       y= "Number of Employees"
     ) +
