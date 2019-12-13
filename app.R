@@ -9,6 +9,7 @@ source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
 source('src/top_10_job_fig.R')
 source('src/header.R')
+source('src/footer.R')
 
 app <- Dash$new(
   external_stylesheets = c(
@@ -56,7 +57,8 @@ app$layout(
           their historical female employment proportion and investigate how their
           gender balance has changed over time.
       ", className='lead mb-4 font-weight-bold'),
-      third_graph
+      third_graph,
+      footer
     ),
     className = 'container main'
   )
