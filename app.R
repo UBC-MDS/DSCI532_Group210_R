@@ -3,7 +3,6 @@ library(dashCoreComponents)
 library(dashHtmlComponents)
 library(tidyverse)
 library(plotly)
-library(gapminder)
 
 source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
@@ -11,6 +10,7 @@ source('src/top_10_job_fig.R')
 source('src/header.R')
 source('src/footer.R')
 
+data <- read_csv('data/jobs_original.csv')
 app <- Dash$new(
   external_stylesheets = c(
     'https://codepen.io/chriddyp/pen/bWLwgP.css',
@@ -34,6 +34,15 @@ third_graph <- dccGraph(
 )
 
 divider <- htmlDiv(className='border-bottom mb-5 mt-5')
+jobsDropdown <- dccDropdown(
+  id = "job",
+  options = lapply( # a shortcut for defining your options
+    levels(data$job), function(x){
+      list(label=x, value=x)
+    }),
+  value = levels(data$job) # default value
+)
+
 
 app$layout(
   htmlDiv(
@@ -43,7 +52,17 @@ app$layout(
           Let's first look at the male and female employment trends of
           individual jobs!
       ", className='lead mb-4 font-weight-bold'),
-      first_graph,
+      htmlDiv(list(
+        htmlDiv(list(
+          htmlLabel('Select a job'),
+          jobsDropdown
+        ), className='column side', style=list(width = '15%')),
+        htmlDiv(
+          list(first_graph),
+          className='column middle',
+          style=list(marginLeft = 0)
+        )
+      ), className='row'),
       divider,
       htmlP("
           Here, we will categorize the jobs into different gender dominant
@@ -63,5 +82,18 @@ app$layout(
     className = 'container main'
   )
 )
+
+# Adding callbacks for interactivity --------------------------------------
+
+app$callback(
+  #update figure of employee-counts
+  output=list(id = 'employee-counts', property='figure'),
+  #based on values of jobs
+  params=list(input(id = "job", property='value')),
+  #this translates your list of params into function arguments
+  function(job_value) {
+    make_job_gender_employment_fig(job_value)
+  })
+
 
 app$run_server()
