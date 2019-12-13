@@ -16,6 +16,27 @@ label_map <- list(
   top_10_balanced = "Balanced"
 )
 
+top_10_category_key <- tibble(
+  label = c("Female Dominated", "Balanced", "Male Dominated"),
+  value = c("top_10_female", "top_10_balanced", "top_10_male")
+)
+
+top_10_category_dropdown_id <- "top-10-category-dropdown"
+
+top_10_category_dropdown <- dccDropdown(
+  id = top_10_category_dropdown_id,
+  options = map(
+    1:nrow(top_10_category_key),
+    function(i) {
+      list(
+        label=top_10_category_key$label[i],
+        value=top_10_category_key$value[i]
+      )
+    }
+  ),
+  value = "top_10_female"
+)
+
 make_top_10_job_fig <- function (data_key = 'top_10_female') {
   jobs_woman_trend_fig <- ggplot(
     data_map[[data_key]],
@@ -33,7 +54,11 @@ make_top_10_job_fig <- function (data_key = 'top_10_female') {
 
   top_10_job_fig <- ggplot(
     data_map[[data_key]],
-    aes(reorder(job, sort(total_prop_female)), total_prop_female, fill = job)
+    aes(
+      reorder(job, total_prop_female),
+      total_prop_female,
+      fill = job
+    )
   ) +
     geom_col(position = 'dodge') +
     scale_y_continuous(labels=scales::percent) +
@@ -50,7 +75,10 @@ make_top_10_job_fig <- function (data_key = 'top_10_female') {
     )+
     theme_bw()
 
-  plots <- list(ggplotly(jobs_woman_trend_fig), ggplotly(top_10_job_fig))
+  plots <- list(
+    ggplotly(jobs_woman_trend_fig),
+    ggplotly(top_10_job_fig, tooltip=c("job", "total_prop_female"))
+  )
 
   subplot(plots, margin = 0.1)
 }
