@@ -1,9 +1,3 @@
-library(dash)
-library(dashCoreComponents)
-library(dashHtmlComponents)
-library(tidyverse)
-library(plotly)
-
 gender_group_data <- read_csv('data/job_gender_group.csv')
 
 make_job_gender_group_fig <- function () {
