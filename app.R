@@ -57,11 +57,29 @@ app$layout(
           their historical female employment proportion and investigate how their
           gender balance has changed over time.
       ", className='lead mb-4 font-weight-bold'),
-      third_graph,
+      htmlDiv(list(
+        htmlDiv(list(
+          htmlLabel('Select a gender balance'),
+          top_10_category_dropdown
+        ), className='column side', style=list(width = '15%')),
+        htmlDiv(
+          list(third_graph),
+          className='column middle',
+          style=list(marginLeft = 0)
+        )
+      ), className='row'),
       footer
     ),
     className = 'container main'
   )
+)
+
+app$callback(
+  output=list(id='top-10', property='figure'),
+  params=list(input(id=top_10_category_dropdown_id, property='value')),
+  function(top_10_category) {
+    make_top_10_job_fig(top_10_category)
+  }
 )
 
 app$run_server()
