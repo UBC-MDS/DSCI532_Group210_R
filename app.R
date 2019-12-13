@@ -89,6 +89,7 @@ app$callback(
   params=list(input(id = jobsDropdownId, property='value')),
   function(selected_job) {
     make_job_gender_employment_fig(selected_job)
+  }
 )
 
 app$callback(
