@@ -5,8 +5,7 @@ library(tidyverse)
 library(plotly)
 library(here)
 
-setwd(here())
-
+setwd('/app')
 print(getwd())
 
 source('src/job_gender_employment_fig.R')
