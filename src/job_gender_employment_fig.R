@@ -24,16 +24,13 @@ make_job_gender_employment_fig <- function (
 
   fig <- ggplot(data_by_job, aes(year, count, color = sex)) +
     geom_line() +
-    scale_y_continuous(
-      breaks=c(0, 20000, 40000, 60000, 80000, 100000, 120000, 140000),
-      labels=c("0K", "20K", "40K", "60K", "80K", "100K", "120K", "140K")
-    ) +
+    scale_y_continuous(labels = function(x) format(x, scientific = FALSE)) +
     labs(
       title = paste("Number of Employees by Year for", selected_job),
       x= "Year",
       y= "Number of Employees"
     ) +
     theme_bw()
-
+  
   ggplotly(fig)
 }
