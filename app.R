@@ -3,8 +3,9 @@ library(dashCoreComponents)
 library(dashHtmlComponents)
 library(tidyverse)
 library(plotly)
+library(here)
 
-print(getwd())
+setwd(here())
 
 source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
