@@ -1,5 +1,3 @@
-print(Sys.getenv('ENV'))
-
 if (Sys.getenv('ENV') == 'PRODUCTION') {
   setwd("/app")
 }
