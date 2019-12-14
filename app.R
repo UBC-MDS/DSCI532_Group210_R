@@ -4,11 +4,11 @@ library(dashHtmlComponents)
 library(tidyverse)
 library(plotly)
 
-source('./src/job_gender_employment_fig.R', chdir=TRUE)
-source('./src/job_gender_group_fig.R', chdir=TRUE)
-source('./src/top_10_job_fig.R', chdir=TRUE)
-source('./src/header.R', chdir=TRUE)
-source('./src/footer.R', chdir=TRUE)
+source('./src/job_gender_employment_fig.R')
+source('./src/job_gender_group_fig.R')
+source('./src/top_10_job_fig.R')
+source('./src/header.R')
+source('./src/footer.R')
 
 app <- Dash$new(
   external_stylesheets = c(
