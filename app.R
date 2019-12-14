@@ -7,6 +7,8 @@ library(here)
 
 setwd(here())
 
+print(getwd())
+
 source('src/job_gender_employment_fig.R')
 source('src/job_gender_group_fig.R')
 source('src/top_10_job_fig.R')
