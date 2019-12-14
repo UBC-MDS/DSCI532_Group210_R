@@ -8,7 +8,7 @@ make_job_gender_group_fig <- function () {
       title = "Number of Job Gender Dominant Groups by Year",
       x = "Year",
       y = 'Number of Jobs',
-      color = 'Job Gender Dominant Group'
+      color = 'Gender Group'
     ) +
     theme_bw()
 

@@ -40,8 +40,11 @@ app$layout(
       header,
       htmlP("
           Let's first look at the male and female employment trends of
-          individual jobs!
+          individual jobs.
       ", className='lead mb-4 font-weight-bold'),
+      htmlP("
+        Toggle the sex groups to filter
+      ", className='lead mb-0'),
       htmlDiv(list(
         htmlDiv(list(
           htmlLabel('Select a job'),
@@ -54,18 +57,36 @@ app$layout(
         )
       ), className='row'),
       divider,
-      htmlP("
+      htmlP(list(
+        "
           Here, we will categorize the jobs into different gender dominant
-          groups, based on their male-to-female ratios, and look at their trends
+          groups, based on their gender ratios, and look at their trends
           over the decades.
-      ", className='lead mb-4 font-weight-bold'),
-      second_graph,
+        ",
+        htmlBr(),
+        "
+          Dominance is categorized by having more than two to
+          one for a gender ratio.
+        "
+      ), className='lead mb-4 font-weight-bold'),
+      htmlP("
+        Toggle the gender groups to filter
+      ", className='lead mb-0'),
+      htmlDiv(list(
+        htmlDiv(
+          list(second_graph),
+          className='column middle'
+        )
+      ), className='row'),
       divider,
       htmlP("
           For the final graph, we will look at different top 10 jobs in terms of
           their historical female employment proportion and investigate how their
           gender balance has changed over time.
       ", className='lead mb-4 font-weight-bold'),
+      htmlP("
+        Toggle the jobs to filter
+      ", className='lead mb-0'),
       htmlDiv(list(
         htmlDiv(list(
           htmlLabel('Select a gender balance'),
