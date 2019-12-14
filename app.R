@@ -1,3 +1,7 @@
+if (Sys.getenv('ENV') == 'PRODUCTION') {
+  setwd("/app")
+}
+
 library(dash)
 library(dashCoreComponents)
 library(dashHtmlComponents)
