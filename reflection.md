@@ -18,6 +18,8 @@
 
 - We were not able to identify the source of the data and get more background information on it. We do not know whether the data was for a country or several countries. We do not know how the data was collected either. Having this information would be to help design the charts.
 
+- Our dataset contains information until the year 2000, which is not current. We wish to have some more information about the last two decades, so our app would be more effective.
+
 ### Future improvements
 
 - There are lots of room for improvement in making the app more aesthetically pleasing and more intuitive in terms of user experience. For instance, the charts can probably be laid out better to allow users to compare them. The text elements can be reorganized so that they convey the relevance of the information better. The input elements can take up less space so that they are more obstructive to the entire experience but serve their functions at the same time.
@@ -26,4 +28,4 @@
 
 ### Addressed issues
 
-We solved a bunch of issues for this milestone. We addressed the duplicated text in the README file by removing it. We picked a mechanic as a team on how to choose the top 10 jobs in terms of gender balance. Our axes were made not to change anymore after our TA gave us feedback. We made the menu panel more clear and added more information about the data based on the TA's feedback. Also, we added more information about the source of the data and how the gender balance groups were derived to address that ambiguity raised by the TA.
+We solved a bunch of issues for this milestone. We picked a mechanic as a team on how to choose the top 10 jobs in terms of gender balance. Our axes were made not to change anymore after our TA gave us feedback. We made the menu panel more clear and added more information about the data based on the TA's feedback. We updated the axes of the plot which were of the scientific notation format by default. It was previously hard to read for a non-scientific audience. Also, we added more information about the source of the data and how the gender balance groups were derived to address that ambiguity raised by the TA.
